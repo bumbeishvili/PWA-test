@@ -9,7 +9,8 @@
 </head>
 
 <body>
-  <button onclick="askMore()"/> Ask More</button>
+  <button onclick="askMore(500)"/> Ask More</button>
+  <button onclick="askMore(2000)"/> Ask Even More</button>
 </body>
 <script>
   //request();
@@ -33,16 +34,16 @@
  
 
 
-  function askMore() {
+  function askMore(size) {
 
     // Request Quota (only for File System API) 
-    var requestedBytes = 1024 * 1024 * 300; // 10MB
+    var requestedBytes = 1024 * 1024 * size; // 10MB
 
     navigator.webkitPersistentStorage.requestQuota(
       requestedBytes, function (grantedBytes) {
         window.webkitRequestFileSystem(PERSISTENT, grantedBytes, function(){
           //   request();
-          document.write( grantedBytes);
+          document.write( grantedBytes +   `<br we are using  ${usedBytes} bytes of  ${grantedBytes / 8 / 1024 / 1024}+ 'mb' <br>`);
           
         });
 
