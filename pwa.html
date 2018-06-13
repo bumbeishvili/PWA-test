@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+  
+
+
+
+  </head>
+
+  <body>
+  
+  </body>
+  <script>
+    navigator.webkitTemporaryStorage.queryUsageAndQuota (
+    function(usedBytes, grantedBytes) {
+        var str = 'we are using '+ usedBytes+ ' of '+ grantedBytes/8/1024/1024+ 'mb'
+        document.write(str);
+    },
+    function(e) { document.write(e.toString())  }
+);
+  </script>
+</html>
