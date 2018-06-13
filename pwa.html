@@ -43,7 +43,7 @@
       requestedBytes, function (grantedBytes) {
         window.webkitRequestFileSystem(PERSISTENT, grantedBytes, function(){
           //   request();
-          document.write( grantedBytes +   `<br we are using  ${usedBytes} bytes of  ${grantedBytes / 8 / 1024 / 1024}+ 'mb' <br>`);
+          document.write( grantedBytes +   `<br we are using    ${grantedBytes / 8 / 1024 / 1024}+ 'mb' <br>`);
           
         });
 
