@@ -41,7 +41,8 @@
     navigator.webkitPersistentStorage.requestQuota(
       requestedBytes, function (grantedBytes) {
         window.webkitRequestFileSystem(PERSISTENT, grantedBytes, function(){
-          request()
+          //   request();
+          document.write( grantedBytes);
           
         });
 
