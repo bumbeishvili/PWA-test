@@ -36,11 +36,11 @@
   function askMore() {
 
     // Request Quota (only for File System API) 
-    var requestedBytes = 1024 * 1024 * 100; // 10MB
+    var requestedBytes = 1024 * 1024 * 300; // 10MB
 
     navigator.webkitPersistentStorage.requestQuota(
       requestedBytes, function (grantedBytes) {
-        window.requestFileSystem(PERSISTENT, grantedBytes, function(){
+        window.webkitRequestFileSystem(PERSISTENT, grantedBytes, function(){
           request()
           
         });
