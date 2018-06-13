@@ -1,23 +1,54 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
-  
+
+<head>
 
 
 
-  </head>
 
-  <body>
-  
-  </body>
-  <script>
-    navigator.webkitTemporaryStorage.queryUsageAndQuota (
-    function(usedBytes, grantedBytes) {
-        var str = 'we are using '+ usedBytes+ ' of '+ grantedBytes/8/1024/1024+ 'mb'
-        document.write(str);
+</head>
+
+<body>
+
+</body>
+<script>
+  request();
+  function request(){
+    navigator.webkitTemporaryStorage.queryUsageAndQuota(
+    function (usedBytes, grantedBytes) {
+      var str = 'we are using ' + usedBytes + ' of ' + grantedBytes / 8 / 1024 / 1024 + 'mb'
+      str = `
+        
+         we are using  ${usedBytes} bytes of  ${grantedBytes / 8 / 1024 / 1024}+ 'mb' <br>
+         we are using  ${usedBytes} bytes of  ${grantedBytes} byte
+
+
+         <button onclick="askMore()"/> Ask More</button>
+        `
+      document.write(str);
     },
-    function(e) { document.write(e.toString())  }
-);
-  </script>
+    function (e) { document.write(e.toString()) }
+  );
+  }
+ 
+
+
+  function askMore() {
+
+    // Request Quota (only for File System API) 
+    var requestedBytes = 1024 * 1024 * 100; // 10MB
+
+    navigator.webkitPersistentStorage.requestQuota(
+      requestedBytes, function (grantedBytes) {
+        window.requestFileSystem(PERSISTENT, grantedBytes, function(){
+          request()
+          
+        });
+
+      }, function (e) { console.log('Error', e); }
+    );
+
+  }
+</script>
+
 </html>
