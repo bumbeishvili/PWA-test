@@ -9,10 +9,10 @@
 </head>
 
 <body>
-
+  <button onclick="askMore()"/> Ask More</button>
 </body>
 <script>
-  request();
+  //request();
   function request(){
     navigator.webkitTemporaryStorage.queryUsageAndQuota(
     function (usedBytes, grantedBytes) {
@@ -23,7 +23,7 @@
          we are using  ${usedBytes} bytes of  ${grantedBytes} byte
 
 
-         <button onclick="askMore()"/> Ask More</button>
+        
         `
       document.write(str);
     },
